@@ -1,18 +1,16 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+    <div>Home页面</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
-  },
-};
+    mounted(){
+        // $route放的都是路由相关的属性
+        // $router放的都是路由的方法
+        console.log(this.$route);
+        console.log(this.$router);
+    }
+}
 </script>
+
+<style scoped></style>
