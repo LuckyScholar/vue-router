@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <router-link to="/">首页</router-link>
-        <router-link to="/about">关于页面</router-link>
+        <router-link to="/about">About页面</router-link>
         <router-view></router-view>
     </div>
 </template>
@@ -10,8 +10,8 @@
 export default {
     name: "app",
     mounted() {
-        console.log(this._routerRoot._router)
+        console.log('this._routerRoot._router',this._routerRoot._router)
     },
 }
 </script>
-<style></style>
+

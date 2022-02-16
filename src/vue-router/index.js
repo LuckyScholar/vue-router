@@ -11,7 +11,7 @@ class vueRouter {
         // 1.match通过路由来匹配组件
         // 2.addRoutes 动态添加匹配规则
         this.matcher = createMatcher(options.routes || [])
-
+        console.log('this.matcher', this.matcher)
         // vue路由有三种模式 hash / h5api /abstract ,为了保证调用时方法一致。我们需要提供一个base类，在分别实现子类，不同模式下通过父类调用对应子类的方法
 
         // 创建历史管理  (路由两种模式 hash  浏览器api)
@@ -31,7 +31,6 @@ class vueRouter {
     }
     init(app) {
         // 初始化 目前这个app指代的就是最外层new Vue
-        console.log(app.$options.name)
         // 需要根据用户配置做一个映射表
 
         // 监听hash值的变化 默认跳转到对应的路径
@@ -40,7 +39,7 @@ class vueRouter {
             history.setupListener() // 监听路由变化 hashchange
         }
 
-        // 父类提供方法负责跳转   初始化 会先获得当前的hash值 进行跳转 并且监听hash变化
+        // 父类提供方法负责跳转   初始化 会先获得当前的hash值 进行跳转的时候监听hash变化
         history.transitionTo(
             history.getCurrentLocation(), // 子类获取当前的位置
             setupHashListener
@@ -55,7 +54,10 @@ class vueRouter {
         // getCurrentLocation  hash和browser实现不一样
         // setupListener  hash监听
     }
-    push() {}
+    push(to) {
+        console.log('vueRouter中的push')
+        this.history.transitionTo(to)   // 跳转路径
+    }
 }
 vueRouter.install = install
 
