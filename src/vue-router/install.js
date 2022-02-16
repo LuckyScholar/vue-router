@@ -11,12 +11,19 @@ export default function install(Vue,options){
                 this._routerRoot = this // 给当前根实例添加一个_routerRoot属性 将根实例挂载在_routerRoot属性上
                 this._router = this.$options.router   // 将当前router实例挂载在_router上
                 this._router.init(this);    // 初始化路由,这里的this指向的是根实例
+
+                // 如何获取到current属性 将current属性定义到_route上
+                Vue.util.defineReactive(this,'_route',this._route.history.current)
+
+                // 当current变化后 更新_route属性
+                // 如果current中path或者matched其他属性变化 也是响应式的
             }else{
                 // 父组件渲染后会渲染子组件 子组件找它的父组件拿到对应的_routerRoot
                 this._routerRoot = this.$parent && this.$parent._routerRoot
                 // 保证所有子组件都拥有_routerRoot 属性，指向根实例 在根实例上取_router属性
                 // 保证所有组件都可以通过 this._routerRoot._router 拿到用户传递进来的路由实例对象
             }
+            // 永远是下一层找上一层
         }
     })
 

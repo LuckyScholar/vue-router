@@ -13,6 +13,6 @@ module.exports = {
         semi: "off",
         "prettier/prettier": "off",
         "no-unused-vars": "off",
-        indent: ["error", 4],
+        // indent: ["error", 4],
     },
 }

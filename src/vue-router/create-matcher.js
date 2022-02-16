@@ -1,4 +1,5 @@
 import createRouteMap from "./create-route-map";
+import { createRoute } from './history/base'
 
 export default function createMatcher(routes){
     // pathMap ={ '/':Home, '/about':About, '/about/a':AboutA, '/about/b':AboutB}
@@ -9,8 +10,12 @@ export default function createMatcher(routes){
         createRouteMap(routes,pathMap)  //将用户动态添加的路由也添加进这个扁平化的路由表中
         console.log('pathMap',pathMap);
     }
-    function match(){
-
+    function match(location){ // 等会要通过用户输   入的路径 获取对应的匹配记录
+        let record = pathMap[location];// 获取对应的记录
+        // /about/a  => matched:[/about,/a]
+        return createRoute(record,{
+            path:location
+        })
     }
     return {
         addRoutes,  //动态添加路由
