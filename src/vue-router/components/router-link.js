@@ -13,8 +13,7 @@ export default {
     methods: {
         // 指定跳转方法
         handler(to) {
-            // 调用$router中的push方法进行跳转
-            console.log('调用$router中的push方法进行跳转', to)
+            // 调用$router实例中的push方法进行跳转
             this.$router.push(to)
         }
     },

@@ -13,10 +13,10 @@ export default function install(Vue, options) {
                 this._routerRoot = this // 给当前根实例添加一个_routerRoot属性 将根实例挂载在_routerRoot属性上
                 this._router = this.$options.router   // 将当前router实例挂载在_router上
                 this._router.init(this);    // 初始化路由,这里的this指向的是根实例
-
-                // 如何获取到current属性 将current属性定义到_route上
+ 
+                // 如何获取到current属性 将current属性定义到_route上  this.$set只能设置某个属性不能设置整个对象为响应式
                 Vue.util.defineReactive(this, '_route', this._router.history.current)
-
+               
                 // 当current变化后 更新_route属性
                 // 如果current中path或者matched其他属性变化 也是响应式的
             } else {

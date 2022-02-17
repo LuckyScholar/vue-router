@@ -2,7 +2,6 @@ import History from './base'
 
 function ensureSlash() {
     if (window.location.hash) {
-        console.log('window.location.hash', window.location.hash)
         return
     }
     window.location.hash = '/'
@@ -28,7 +27,7 @@ export default class HashHistory extends History {
         })
     }
     push(location) {
-        console.log('location', location)
+        // 跳转的路径 改变hash值的回调函数
         this.transitionTo(location, () => {
             window.location.hash = location // 通过$router.push方法更新hash值 变化后跳转 但是不会重新更新current属性
         })

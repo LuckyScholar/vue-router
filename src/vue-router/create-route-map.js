@@ -1,6 +1,6 @@
 export default function createRouteMap(routes, oldPathMap) {
     let pathMap = oldPathMap || Object.create(null) // 默认没有传递就直接创建
-    console.log('pathMap路由表', pathMap)
+    // console.log('pathMap路由表', pathMap)
     // 映射关系
     routes.forEach(route => {
         // 添加到路由记录，用户配置可能是无限层级，稍后要递归调用此方法

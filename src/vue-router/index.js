@@ -11,12 +11,13 @@ class vueRouter {
         // 1.match通过路由来匹配组件
         // 2.addRoutes 动态添加匹配规则
         this.matcher = createMatcher(options.routes || [])
-        console.log('this.matcher', this.matcher)
+        // console.log('this.matcher', this.matcher)
         // vue路由有三种模式 hash / h5api /abstract ,为了保证调用时方法一致。我们需要提供一个base类，在分别实现子类，不同模式下通过父类调用对应子类的方法
 
         // 创建历史管理  (路由两种模式 hash  浏览器api)
         this.mode = options.mode || "hash"
-
+        // 放置所有的前置钩子
+        this.beforeHooks = []
         switch (this.mode) {
             case "hash":
                 this.history = new HashHistory(this)
@@ -45,7 +46,7 @@ class vueRouter {
             setupHashListener
         )
         history.listen(route => {
-            // 每次路径变化 都会调用此方法
+            // 每次路径变化 都会调用此方法 更新_route属性
             app._route = route
         })
 
@@ -54,9 +55,13 @@ class vueRouter {
         // getCurrentLocation  hash和browser实现不一样
         // setupListener  hash监听
     }
+    // 基类中的push 看你是跳到hash模式里面的push方法 还是history模式里面的push方法
     push(to) {
-        console.log('vueRouter中的push')
-        this.history.transitionTo(to)   // 跳转路径
+        this.history.push(to)   // 跳转路径
+    }
+    // 相当于订阅这些钩子
+    beforeEach(fn){
+        this.beforeHooks.push(fn)
     }
 }
 vueRouter.install = install

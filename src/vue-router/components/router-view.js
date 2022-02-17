@@ -6,7 +6,7 @@ export default {
         let route = parent.$route; // this.current
         let depth = 0
         data.routerView = true  // 标识路由属性
-        console.log('parent', parent)
+        // console.log('parent', parent)
         // App.vue 中渲染组件时 默认会调用render函数 父亲中没有data.routerView属性
         // 渲染第一层 并且标识当前routerView为true
         while (parent) {  // router-view的父标签
